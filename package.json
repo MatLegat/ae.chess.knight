@@ -1,0 +1,25 @@
+{
+  "name": "ae.chess.knight",
+  "version": "1.0.0",
+  "description": "AE.STUDIO challenge - Chess' Knight movements",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatLegat/ae.chess.knight.git"
+  },
+  "author": "Matteus Legat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatLegat/ae.chess.knight/issues"
+  },
+  "homepage": "https://github.com/MatLegat/ae.chess.knight#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-sass-middleware": "^0.11.0",
+    "path": "^0.12.7"
+  }
+}
