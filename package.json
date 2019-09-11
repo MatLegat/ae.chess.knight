@@ -1,25 +1,63 @@
 {
-  "name": "ae.chess.knight",
-  "version": "1.0.0",
-  "description": "AE.STUDIO challenge - Chess' Knight movements",
-  "main": "server.js",
+  "name": "ae.chess.knight.front",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "server": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "concurrently \"npm run vue:serve\" \"npm run express\"",
+    "build": "npm run vue:build && npm run express:run",
+    "test": "echo \"ERR: Tests not defined\"",
+    "lint": "vue-cli-service lint",
+
+    "vue:serve": "vue-cli-service serve",
+    "vue:build": "vue-cli-service build",
+
+    "express": "run-script-os",
+    "express:windows": "(if defined EXPRESS_PORT (set PORT=%EXPRESS_PORT%) else (set PORT=3003)) vue-cli-service express:watch",
+    "express:default": "PORT=${EXPRESS_PORT:-3003} vue-cli-service express:watch",
+
+    "express:run": "run-script-os",
+    "express:run:windows": "(if defined EXPRESS_PORT (set PORT=%EXPRESS_PORT%) else (set PORT=3003)) & vue-cli-service express:run",
+    "express:run:default": "PORT=${EXPRESS_PORT:-3003} vue-cli-service express:run"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MatLegat/ae.chess.knight.git"
-  },
-  "author": "Matteus Legat",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MatLegat/ae.chess.knight/issues"
-  },
-  "homepage": "https://github.com/MatLegat/ae.chess.knight#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "node-sass-middleware": "^0.11.0",
-    "path": "^0.12.7"
-  }
+    "@vue/cli-service": "^3.11.0",
+    "core-js": "^2.6.5",
+    "express-http-proxy": "^1.5.1",
+    "run-script-os": "^1.0.7",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "babel-eslint": "^10.0.1",
+    "concurrently": "^4.1.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "npx": "^10.0.1",
+    "vue-cli-plugin-express": "^1.0.2",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
