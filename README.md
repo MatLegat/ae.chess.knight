@@ -8,7 +8,7 @@ Shows reachable positions of a chess knight in two rounds, according to the init
 npm install
 ```
 
-## Compile and hot-reloads for development
+### Compile and hot-reloads for development
 Run only vue app (front-end): 
 ```
 npm run vue:serve
@@ -22,7 +22,7 @@ npm run express
 npm run serve
 ```
 
-## Compile and minify for production
+### Compile and minify for production
 Run only vue app (front-end): 
 ```
 npm run vue:build
@@ -36,17 +36,17 @@ npm run express:run
 npm run build
 ```
 
-## Run tests
+### Run tests
 ```
 npm run test
 ```
 
-## Lint and fix files
+### Lint and fix files
 ```
 npm run lint
 ```
 
-## Custom configuration
+### Custom configuration
 You can change the application port using the environment variable `EXPRESS_PORT`
 
 Windows example:
