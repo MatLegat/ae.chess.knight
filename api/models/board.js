@@ -1,5 +1,4 @@
 import uuid from 'uuid/v4'
-import { throws } from 'assert'
 
 // Chess Board Model
 
