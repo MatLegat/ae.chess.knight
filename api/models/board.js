@@ -23,30 +23,6 @@ class Board {
   static get maxPieces() { return maxPieces }
   static get validSets() { return validSets }
 
-  // Parse position from Algebraic Notation (e.g. 'A5') to Array Position (e.g. [0, 4]) 
-  static parseToArrPosition(algPos) {
-    const fullPattern = /^[A-Z][0-9]+$/s
-    algPos = algPos.toUpperCase()
-
-    if (!algPos.match(fullPattern)) {
-      throw "Invalid Algebraic Notation"
-    }
-    
-    const x = algPos.charCodeAt(0) - 'A'.charCodeAt(0)
-    const y = parseInt(algPos.substring(1)) - 1
-
-    if (!this.validatePosition([x, y])) {
-      throw "Invalid Position"
-    }
-    return [x, y]
-  }
-
-  // Parse position from Array Position (e.g. [0, 4]) to Algebraic Notation (e.g. 'A5')
-  static parseToAlgNotation(arrPos) {
-    const [x, y] = arrPos
-    return String.fromCharCode('A'.charCodeAt(0) + x) + (y+1)
-  }
-
   // Check if array position is valid on the board
   static validatePosition(arrPos) {
     const [x, y] = arrPos
@@ -60,7 +36,7 @@ class Board {
   }
 
   // Place new piece on the board
-  placePiece(type, algPos, set) {
+  placePiece(type, arrPos, set) {
     if (!maxPieces.type) {
       throw "Invalid Piece Type"
     }
@@ -76,12 +52,11 @@ class Board {
       throw "Exceeded pieces of same type and set"
     }
 
-    const [x, y] = this.parseToArrPosition(algPos)
-    
-    if (this.positionIsTaken()) {
+    if (this.positionIsTaken(arrPos)) {
       throw "Position already taken"
     }
-
+    
+    const [x, y] = arrPos
     const newPiece = { id: uuid(), type, set, x, y }
     this.placedPieces[newPiece.id]
 
