@@ -1,4 +1,5 @@
 import uuid from 'uuid/v4'
+import { throws } from 'assert'
 
 // Chess Board Model
 
@@ -61,6 +62,38 @@ class Board {
     this.placedPieces[newPiece.id]
 
     return newPiece
+  }
+  
+  // Move a piece on the board
+  movePiece(piece, newArrPos) {
+    if (!this.validatePosition(newArrPos)) {
+      throw "Invalid Position"
+    }
+    
+    piece = this.placedPieces[piece.id || piece]
+    const [x0, y0] = [piece.x, piece.y]
+    const [x1, y1] = newArrPos
+
+    switch (piece.type) {
+      case 'knight':
+        if (!(
+          ((x1 == x0+2 || x1 == x0-2) && (y1 == y0+1 || y1 == y0-1)) ||
+          ((y1 == y0+2 || y1 == y0-2) && (x1 == x0+1 || x1 == x0-1))
+        )) {
+          throw 'Invalid movement for knight'
+        }
+
+      break;
+      default:
+        // No validation 
+    }
+
+
+    if (this.positionIsTaken(newArrPos)) {
+      throw "Position already taken"
+    }
+    [piece.x, piece.y] = [x1, y1]
+    return piece
   }
 }
 

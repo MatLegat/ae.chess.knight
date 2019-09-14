@@ -17,7 +17,7 @@ class Game {
     const x = algPos.charCodeAt(0) - 'A'.charCodeAt(0)
     const y = parseInt(algPos.substring(1)) - 1
 
-    if (!this.validatePosition([x, y])) {
+    if (!Board.validatePosition([x, y])) {
       throw "Invalid Position"
     }
     return [x, y]
