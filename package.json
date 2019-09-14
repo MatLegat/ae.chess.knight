@@ -12,7 +12,7 @@
     "vue:build": "vue-cli-service build",
 
     "express": "run-script-os",
-    "express:windows": "(if defined EXPRESS_PORT (set PORT=%EXPRESS_PORT%) else (set PORT=3003)) vue-cli-service express:watch",
+    "express:windows": "(if defined EXPRESS_PORT (set PORT=%EXPRESS_PORT%) else (set PORT=3003)) & vue-cli-service express:watch",
     "express:default": "PORT=${EXPRESS_PORT:-3003} vue-cli-service express:watch",
 
     "express:run": "run-script-os",
