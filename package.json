@@ -7,14 +7,11 @@
     "build": "npm run vue:build && npm run express:run",
     "test": "echo \"ERR: Tests not defined\"",
     "lint": "vue-cli-service lint",
-
     "vue:serve": "vue-cli-service serve",
     "vue:build": "vue-cli-service build",
-
     "express": "run-script-os",
     "express:windows": "(if defined EXPRESS_PORT (set PORT=%EXPRESS_PORT%) else (set PORT=3003)) & vue-cli-service express:watch",
     "express:default": "PORT=${EXPRESS_PORT:-3003} vue-cli-service express:watch",
-
     "express:run": "run-script-os",
     "express:run:windows": "(if defined EXPRESS_PORT (set PORT=%EXPRESS_PORT%) else (set PORT=3003)) & vue-cli-service express:run",
     "express:run:default": "PORT=${EXPRESS_PORT:-3003} vue-cli-service express:run"
@@ -24,6 +21,7 @@
     "core-js": "^2.6.5",
     "express-http-proxy": "^1.5.1",
     "run-script-os": "^1.0.7",
+    "uuid": "^3.3.3",
     "vue": "^2.6.10"
   },
   "devDependencies": {
