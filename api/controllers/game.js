@@ -7,7 +7,7 @@ class Game {
 
   // Parse position from Algebraic Notation (e.g. 'A5') to Array Position (e.g. [0, 4]) 
   static parseToArrPosition(algPos) {
-    const fullPattern = /^[A-Z][0-9]+$/s
+    const fullPattern = /^[A-Z][0-9]+$/
     algPos = algPos.toUpperCase()
 
     if (!algPos.match(fullPattern)) {
@@ -26,6 +26,9 @@ class Game {
   // Parse position from Array Position (e.g. [0, 4]) to Algebraic Notation (e.g. 'A5')
   static parseToAlgNotation(arrPos) {
     const [x, y] = arrPos
+    if (!Board.validatePosition([x, y])) {
+      throw "Invalid Position"
+    }
     return String.fromCharCode('A'.charCodeAt(0) + x) + (y+1)
   }
 }
