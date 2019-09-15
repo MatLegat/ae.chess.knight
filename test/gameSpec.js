@@ -58,4 +58,42 @@ describe('Game', () => {
       }
     }
   })
+
+  it('must provide all valid positions on a board', () => {
+    const positions = Game.validPositions()
+    expect(positions.length).toBe(8*8)
+
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        expect(positions.some(pos => pos[0]==i && pos[1]==j)).toBe(true)  
+      }
+    }
+  })
+
+  it('must place and get pieces with algebraic notation', () => {
+    game.placeNewPiece('B5', 'knight', 'white')
+    expect(Object.values(game.board.placedPieces).length).toBe(1)
+
+    expect(game.getPieceOn('B5')).toBe(Object.values(game.board.placedPieces)[0])
+
+    expect(game.getPieceOn('B6')).toBeUndefined()
+  })
+
+  it('must provide available moves in one step for a piece', () => {
+    game.placeNewPiece('D4', 'knight', 'black')
+    expect(game.getAvailableMoves('D4'))
+      .toEqual(['B3', 'B5', 'C2', 'C6', 'E2', 'E6', 'F3', 'F5'])
+
+    resetGame()
+    game.placeNewPiece('H8', 'knight', 'black')
+    expect(game.getAvailableMoves('H8'))
+      .toEqual(['F7', 'G6'])
+  })
+
+  it('must provide available moves in two steps for a piece', () => {
+    game.placeNewPiece('A1', 'knight', 'white')
+    expect(game.getAvailableMovesIn2('A1'))
+      .toEqual(['A1', 'A3', 'A5', 'B4', 'C1', 'C5', 'D2', 'D4', 'E1', 'E3'])
+  })
+
 })
