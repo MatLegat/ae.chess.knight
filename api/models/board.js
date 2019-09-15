@@ -1,5 +1,4 @@
 import uuid from 'uuid/v4'
-import { throws } from 'assert'
 
 // Chess Board Model
 
@@ -33,40 +32,47 @@ class Board {
   // Check if array position is taken by some piece
   positionIsTaken(arrPos) {
     const [x, y] = arrPos
-    return this.placedPieces.some(piece => piece.x == x && piece.y == y)
+    return Object.values(this.placedPieces)
+      .some(piece => piece.x == x && piece.y == y)
   }
 
   // Place new piece on the board
   placePiece(type, arrPos, set) {
-    if (!maxPieces.type) {
+    type = type.toLowerCase()
+    set = set.toLowerCase()
+    if (!this.constructor.maxPieces[type]) {
       throw "Invalid Piece Type"
     }
 
-    if (!validSets.includes(set)) {
+    if (!this.constructor.validSets.includes(set)) {
       throw "Invalid Piece Set"
     }
-
-    const similarPieces = this.placedPieces.filter(
-      piece => (piece.type == type && piece.set == set)
-    )
-    if (maxPieces.type <= similarPieces.lenght) {
-      throw "Exceeded pieces of same type and set"
+    
+    if (!this.constructor.validatePosition(arrPos)) {
+      throw "Invalid position"
     }
 
+    const similarPieces = Object.values(this.placedPieces).filter(
+      piece => (piece.type == type && piece.set == set)
+    )
+    if ((similarPieces.length) >= (this.constructor.maxPieces[type])) {
+      throw "Exceeded pieces of same type and set"
+    }
+    
     if (this.positionIsTaken(arrPos)) {
       throw "Position already taken"
     }
-    
+
     const [x, y] = arrPos
     const newPiece = { id: uuid(), type, set, x, y }
-    this.placedPieces[newPiece.id]
+    this.placedPieces[newPiece.id] = newPiece
 
     return newPiece
   }
   
   // Move a piece on the board
   movePiece(piece, newArrPos) {
-    if (!this.validatePosition(newArrPos)) {
+    if (!this.constructor.validatePosition(newArrPos)) {
       throw "Invalid Position"
     }
     
