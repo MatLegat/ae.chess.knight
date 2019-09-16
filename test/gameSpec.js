@@ -1,4 +1,4 @@
-import Game from '../api/controllers/Game.js'
+import Game from '../api/controllers/game.js'
 
 describe('Game', () => {
 

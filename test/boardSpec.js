@@ -1,4 +1,4 @@
-import Board from '../api/models/Board.js'
+import Board from '../api/models/board.js'
 
 describe('Board', () => {
 
