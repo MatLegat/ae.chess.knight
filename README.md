@@ -3,6 +3,8 @@ Challenge application built with Express.js and Vue.js.
 
 Shows reachable positions of a chess knight in two rounds, according to the initial position given by the user.
 
+Live version can be acessed at [chess.legat.ml](https://chess.legat.ml)
+
 ## Project Organization
 
 ### Express.js backend app
