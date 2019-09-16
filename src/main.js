@@ -5,6 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faChessBishop, faChessKnight, faChessKing, faChessRook, faChessQueen, faChessPawn }
   from '@fortawesome/free-solid-svg-icons'
+import 'babel-polyfill'
 import App from './App.vue'
 
 library.add(faChessBishop, faChessKnight, faChessKing, faChessRook, faChessQueen, faChessPawn)
