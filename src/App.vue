@@ -1,22 +1,20 @@
 <template>
   <div id="app">
     <Board :movements="movements"/>
-    <p>Show places reachable by knight in:
-      <select v-model="movements">
-        <option value="one">one movement</option>
-        <option value="two">two movements</option>
-      </select>
-    </p>
+    <MovesSelector v-model="movements"/>
   </div>
 </template>
 
+
 <script>
 import Board from './components/Board.vue'
+import MovesSelector from './components/MovesSelector.vue'
 
 export default {
   name: 'app',
   components: {
-    Board
+    Board,
+    MovesSelector
   },
   data() {
     return {
@@ -26,20 +24,22 @@ export default {
 }
 </script>
 
+
 <style lang="scss">
 html, body {
   padding: 0;
   margin: 0;
 }
+
 body {
   background: url('./assets/bg.png');
 }
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #000;
   margin-top: 15vh;
 }
 </style>

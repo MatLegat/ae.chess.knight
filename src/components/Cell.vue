@@ -11,6 +11,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: 'Cell',
@@ -21,6 +22,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped lang="scss">
 .cell {
@@ -39,10 +41,12 @@ export default {
     margin-top: 15%;
     display: flex;
     stroke-width: 4%;
+
     &.black {
       color: #000;
       stroke: #fff;
     }
+
     &.white {
       color: #fff;
       stroke: #000;
@@ -50,11 +54,11 @@ export default {
   }
 
   &:hover {
+    cursor: pointer;
     box-shadow: inset 0 0 3px 3px rgba(0,0,0,.75);
     @media screen and (min-width: 768px) {
       box-shadow: inset 0 0 4px 5px rgba(0,0,0,.75);
     }
-    cursor: pointer;
   }
 
   &::before {
