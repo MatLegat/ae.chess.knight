@@ -1,12 +1,15 @@
 <template>
   <div class="board">
-    <template v-for="line in 'HGFEDCBA'">
-      <div class="line" :key="line">
-      <template v-for="column in '12345678'">
-        <Cell :key='line+column' @click="selectCell"/>
-      </template>
-      </div>
-    </template>
+    <div class="line" :key="line" v-for="line in Array.from('HGFEDCBA')">
+      <Cell 
+        v-for="position in Array.from('12345678').map(column => line + column)" 
+        :key="position"
+        :piece="selectedCell == position ? 'knight' : null"
+        :color="selectedCell == position ? 'white' : null"
+        :highlighted="highlightedCells.includes(position)"
+        @select-cell="selectCell(position)"
+      />
+    </div>
   </div>
 </template>
 
@@ -15,10 +18,35 @@ import Cell from './Cell.vue'
 export default {
   name: 'Board',
   props: {
-    msg: String
+    movements: String
+  },
+  data() {
+    return {
+      selectedCell: null,
+      highlightedCells: []
+    }
   },
   components: {
     Cell
+  },
+  watch: {
+    movements() {
+      this.selectCell(this.selectedCell)
+    } 
+  },
+  methods: {
+    selectCell(position) {
+      this.selectedCell = position
+      this.highlightedCells = []
+      this.axios.post(
+        `/api/knight-${this.movements}-move${this.movements != 'one' ? 's' : ''}`,
+        {position}
+      ).then(response => {
+        if (response.status == 200 && response.data) {
+          this.highlightedCells.push(...response.data)
+        }  
+      })
+    }
   }
 }
 </script>

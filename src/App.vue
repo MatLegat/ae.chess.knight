@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <Board/>
+    <Board :movements="movements"/>
+    <p>Show places reachable by knight in:
+      <select v-model="movements">
+        <option value="one">one movement</option>
+        <option value="two">two movements</option>
+      </select>
+    </p>
   </div>
 </template>
 
@@ -11,6 +17,11 @@ export default {
   name: 'app',
   components: {
     Board
+  },
+  data() {
+    return {
+      movements: 'two'
+    }
   }
 }
 </script>
@@ -28,7 +39,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000;
   margin-top: 15vh;
 }
 </style>
